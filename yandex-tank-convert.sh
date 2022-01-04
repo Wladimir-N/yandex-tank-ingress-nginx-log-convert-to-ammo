@@ -18,4 +18,4 @@ do
 		sessionid_old=$sessionid
 	fi
 	echo $uri
-done < <($kubectl -n $namespase logs `$kubectl -n $namespase get pod | grep -E "$deployments-name-ingress-nginx-controller-.+1/1     Running" | awk '{print $1}'` | grep -E '\] "GET /.+ \[$proxy_upstream_name\] ' | cut -d '"' -f1,2,8 | tr '"' ' ' | awk '{print $1,$7,$9}')
+done < <($kubectl -n $namespase logs `$kubectl -n $namespase get pod | grep -E "$deployments-name-ingress-nginx-controller-.+1/1     Running" | awk '{print $1}'` | grep -E "\] \"GET /.+ \[$proxy_upstream_name\] " | cut -d '"' -f1,2,8 | tr '"' ' ' | awk '{print $1,$7,$9}')
